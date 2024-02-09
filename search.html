@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Ducks</title>
+</head>
+<body>
+    <label>Type:</label>
+    <input id="type"/>
+    <button onclick="search()">Search</button>
+    <br />
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody id="searchResult">
+        </tbody>
+    </table>
+
+    <script>
+        let ducks = [
+            { id: 1, type: "Mallard" },
+            { id: 2, type: "Redhead" },
+            { id: 3, type: "Decoy" },
+            // Add more duck objects as needed
+        ];
+
+        function search() {
+            let duckType = document.getElementById("type").value.toLowerCase();
+            let table = document.getElementById("searchResult");
+            table.innerHTML = ""; // Clear previous results
+
+            for (let duck of ducks) {
+                if (!duckType || duck.type.toLowerCase().includes(duckType)) {
+                    let row = document.createElement("tr");
+                    let cellId = document.createElement("td");
+                    let cellType = document.createElement("td");
+
+                    cellId.textContent = duck.id;
+                    cellType.textContent = duck.type;
+
+                    row.appendChild(cellId);
+                    row.appendChild(cellType);
+
+                    table.appendChild(row);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
